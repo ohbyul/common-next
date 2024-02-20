@@ -1,0 +1,1 @@
+export { type FlowbiteFileInputTheme } from './file.interface'

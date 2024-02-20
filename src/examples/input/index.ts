@@ -1,0 +1,1 @@
+export { root } from './input.root';

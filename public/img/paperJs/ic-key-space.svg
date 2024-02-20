@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_레이어_1" data-name="레이어 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 18">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-2 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-3 {
+        fill: #666;
+        font-family: KoPubDotumMedium, 'KoPubDotum Medium';
+        font-size: 9px;
+        isolation: isolate;
+      }
+
+      .cls-4 {
+        fill: #fff;
+        stroke: #ccc;
+        stroke-miterlimit: 10;
+        stroke-width: .5px;
+      }
+    </style>
+  </defs>
+  <rect class="cls-4" x="1" y="1.5" width="28" height="15" rx="2.13" ry="2.13"/>
+  <text class="cls-3" transform="translate(3.21 12.6)"><tspan class="cls-2" x="0" y="0">Spa</tspan><tspan class="cls-1" x="14.35" y="0">c</tspan><tspan class="cls-2" x="18.51" y="0">e</tspan></text>
+</svg>

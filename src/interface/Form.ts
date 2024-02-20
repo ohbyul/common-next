@@ -1,0 +1,1 @@
+export interface FormActionResult { message: string }

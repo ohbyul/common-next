@@ -1,0 +1,430 @@
+<html>
+<body data-toolbarDisplay="left">
+<link rel="stylesheet" href="/css/ui.css" type="text/css" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="/css/display.css" type="text/css" />
+<link rel="stylesheet" href="/css/paperJs/mediauto.css" type="text/css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" type="text/css"/>
+<div id="mediautoView" style="width:100%;height:100%;position:relative;overflow:hidden">
+
+    <!-- Toolbar -->
+    <div id="menuBar" class="table">
+        <div id="tools-side" style="display:block;height:100%">
+            <div id="tools-minimized">
+                <div>
+                    <img id="bars-icon" alt="menu" src="/img/paperJs/bars.svg" />
+                </div>
+            </div>
+            
+            <div id="tools-maximized">
+                <!-- buttons -->
+                <div id="buttonsBlock" class="btnPosition" style="display:flex;">
+                    <div class="clear">
+                        <div class="floatL mui push btn noBorder" id="list" title="List" style="margin-right:16px"><img class="icon" alt="list" src="/img/paperJs/ic-list.svg" /></div>
+
+                        <div class="floatL btnBoder btnArea1">
+                            <div class="floatL mui push btn noBorder no-lock" id="transformImage" title="Transform Image (alt + t)" ><svg class="tools JPG"/></div>
+                            <div class="floatL mui push btn noBorder no-lock" id="popupImageList" title="Image List" style="border-right: 1px solid #b0b8c2"><svg class="tools image-list"/></div>
+                            <div class="floatL mui push btn" id="move" title="Move (ctrl + drag)"><svg class="tools move"/></div>
+                            <div class="floatL mui push btn noBorder" id="rotateLeft" title="Rotate Left" class="mui push noBorder"><svg class="tools rotate-left"/></div>
+                            <div class="floatL mui push btn noBorder" id="rotateRight" title="Rotate Right"><svg class="tools rotate-right"/></div>
+                        </div>
+                        <div class="floatL btnBoder btnArea2">
+                            <div class="floatL mui push btn selected no-lock" id="select" title="Select (s + click)"><svg class="tools select"/></div>
+                            <div class="floatL mui push btn" id="drawPoint" title="Draw Point"><svg class="tools draw-point"/></div>
+                            <div class="floatL mui push btn" id="drawLine" title="Draw Line"><svg class="tools draw-line"/></div>
+                            <div class="floatL mui push btn" id="drawBbox" title="Draw Bbox"><svg class="tools draw-bbox"/></div>
+                            <div class="floatL mui push btn" id="drawSeg" title="Draw Polygon"><svg class="tools draw-seg"/></div>
+                            <div class="floatL mui push btn" id="region" title="Region Add/Sub (space + drag)"><svg class="tools knife"/></div>
+                            <div class="floatL mui push btn" id="pointAdd" title="Point Add"><svg class="tools point-add"/></div>
+                            <div class="floatL mui push btn" id="pointDelete" title="Point Delete"><svg class="tools point-delete"/></div>
+                            <div class="floatL mui push btn" id="rotate" title="Rotate (r + drag)"><svg class="tools rotate"/></div>
+                            <div class="floatL mui push btn noBorder" id="undo" title="Undo (ctrl + z)"><svg class="tools undo"/></div>
+                            <div class="floatL mui push btn noBorder" id="redo" title="Redo (ctrl + y)"><svg class="tools redo"/></div>
+                            <div class="floatL mui push btn noBorder" id="delete" title="Delete (delete)"><svg class="tools delete"/></div>
+                        </div>
+                        <div class="floatL btnBoder btnArea3">
+                            <div class="floatL mui push btn noBorder no-lock" id="popupInfo" title="Image Info (alt + i)" ><svg class="tools info"/></div>
+                        </div>
+                        <div class="floatL btnBoder btnArea4">
+                            <div class="floatL mui push btn noBorder no-lock" id="popupObject" title="Object List (alt + o)" ><svg class="tools object"/></div>
+                            <div class="floatL mui push btn noBorder no-lock" id="popupMemo" title="Memo (alt + m)" ><svg class="tools memo"/></div>
+                            <div class="floatL mui push btn no-lock" id="drawMeasurement" title="Draw Measurement"><svg class="tools ruler"/></div>
+                            <div class="floatL mui push btn noBorder no-lock" id="popupHint" title="Shortcuts (alt + h)" ><svg class="tools question"/></div>
+                        
+                            <div class="floatL mui push btn no-lock" id="drawComment" title="Comment" ><svg class="tools comment"/></div>
+                        
+                        <!--
+                            
+                            <div class="floatL mui push btn noBorder" id="filters" title="Filters" ><svg class="tools info"/></div>
+                        -->
+                        </div>
+                        <div class="floatL btnBoder btnArea4">
+                            <div class="floatL mui push btn noBorder" id="uploadAsap" title="Upload ASAP" >
+                                <input type="file" id="create-attach-file" name="files" style="width: 0; height: 0; position: absolute;" accept=".xml"/>
+                                <svg class="tools upload"/>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div id="buttonsBlock2" class="btnZoom">
+                <div id="zoomIn" title="Zoom In (+)"  class="mui push noBorder"><svg class="tools zoom-in"/></div>
+                <div id="zoomOut" title="Zoom Out (-)" class="mui push noBorder"><svg class="tools zoom-out"/></div>
+                <div id="zoomHome" title="Home (0)" class="mui push noBorder"><svg class="tools zoom-home"/></div>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="test1" width="300" height="300" style="visibility: hidden; position: absolute; bottom: 124px; left: 24px;"></canvas>
+    <canvas id="test2" width="300" height="300" style="visibility: hidden; position: absolute; bottom: 124px; left: 24px;"></canvas>
+
+    <div id="labelDiv" class="popup labelDiv">
+        <div class="close_btn"></div>
+    </div>
+
+    <div id="labelBar" style="">
+        <!--<input type="checkbox" name="checker" id="chk1" class="chk"><label for="chk1">체크1</label>-->
+    </div>
+
+
+    <div class="infotBox">
+        <div>
+            <div class="floatL" id="fileName"></div>
+            <div class="floatL bar">
+                <span>X:</span><span id="pointX" class="pointX"></span>
+                <span>Y:</span><span id="pointY" class="pointY"></span>
+            </div>
+        </div>
+        <div class="flex ai-center">
+            <div>( <span id="image-format">JPG</span> View )</div>
+            <a id="prevSlide" class="glyphicon glyphicon-triangle-left" aria-hidden="true"></a>
+            <a id="nextSlide" class="glyphicon glyphicon-triangle-right" aria-hidden="true"></a>
+        </div>
+    </div>
+
+    <!-- OpenSeadragon viewer -->
+    <div id="openseadragon1" style="width:100%;height:100%;background:white">
+    </div>
+
+    <!-- paperjs container -->
+    <div id = "paperjs-container">
+    </div>
+
+    <button id="btnNavigator" class="btnNavigator reduce"></button>
+
+    <div id="popup-object" class="popup popup-list" >
+        <div id="changeLabelDiv" class="popup labelDiv changeLabelDiv">
+            <div class="close_btn"></div>
+        </div>
+        <div class="titleText">Review</div>
+        <div class="drag-btn">
+            <div class="drag-ico"></div>
+        </div>
+        <div class="close_btn"></div>
+        <div class="viewArea">
+        <ul class="list">
+            <!-- <li class="clear"><div class="object floatL"><span></span>Object 1</div><div class="floatR acceptOff">Accept</div></li>-->
+        </ul>
+        </div>            
+        <div id="sliderDiv">
+            <div id="opacityDiv">
+                <div>Opacity</div>
+                <div class="slider">
+                </div>
+            </div>
+            <div id="strokeDiv">
+                <div>Stroke Width</div>
+                <div class="slider">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="popup-memo" class="popup popup-list">
+        <div class="titleText">Memo</div>
+        <div class="add_btn" id="btnAddMemo"></div>
+        <div class="drag-btn" id="btnDragInformation">
+            <div class="drag-ico"></div>
+        </div>
+        <div class="close_btn"></div>
+        <div class="memo-container">
+            <ul class="list">
+            </ul>
+        </div>            
+    </div>
+    
+    <div id="popup-info" class="popup" style="visibility: hidden;">
+        <div class="tabs" style="height: calc(100% - 52px)";>
+            <input type="radio" name="tabs" id="tab2" checked="checked">
+            <label for="tab2">Clinical Info</label>
+            <div class="tab tab2" style="overflow-y: scroll;">
+                <ul id="clinical-info" style="height: 380px;">
+                    <!--
+                    <li class="listWrap">
+                        <div class="infor Txt1">Age_year_at_surgery</div>
+                        <div class="infor Txt2">61</div>
+                    </li>
+                    <li class="listWrap">
+                        <div class="infor Txt1">Property</div>
+                        <div class="infor Txt2">IV</div>
+                    </li>
+                    -->
+                </ul>
+
+            </div>
+            
+            <input type="radio" name="tabs" id="tab1">
+            <label for="tab1">Image Info</label>
+            <div class="tab">
+                <ul style="height: 100%;">
+                    <li class="listWrap">
+                        <div class="infor Txt1">Micrometers Per Pixel X</div>
+                        <div class="infor Txt2 pixelX">N/A</div>
+                    </li>
+                    <li class="listWrap">
+                        <div class="infor Txt1">Micrometers Per Pixel Y</div>
+                        <div class="infor Txt2 pixelY">N/A</div>
+                    </li>
+                    <li class="listWrap">
+                        <div class="infor Txt1">Width(pixes)</div>
+                        <div class="infor Txt2 width"></div>
+                    </li>
+                    <li class="listWrap">
+                        <div class="infor Txt1">Height(pixels)</div>
+                        <div class="infor Txt2 height"></div>
+                    </li>                
+                    <li class="listWrap">
+                        <div class="infor Txt1">Vendor</div>
+                        <div class="infor Txt2 vendor">jpeg</div>
+                    </li>
+                    <li class="listWrap" style="height: calc(100% - 174px);">
+                        <div class="infor Txt1">Property</div>
+                        <div class="infor textarea property">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <input type="radio" name="tabs" id="tab3">
+            <label for="tab3">Worker</label>
+            <div class="tab tab3">
+                <table class="tabTable">
+                    <colgroup>
+                        <col width="30%"/>
+                        <col width="30%"/>
+                        <col/>
+                    </colgroup>
+                    <tbody>
+                        <tr style="background-color: #fff;">
+                            <th>State</th>
+                            <th>Worker</th>
+                            <th>Complete Date</th>
+                        </tr>
+                        <tr style="background-color: #fff;">
+                            <td>Annotation</td>
+                            <td id="annotation-ssid">-</td>
+                            <td id="annotation-dtc-dtm">-</td>
+                        </tr>
+                        <tr style="background-color: #fff;">
+                            <td>Review</td>
+                            <td id="review-ssid">-</td>
+                            <td id="review-dtc-dtm">-</td>
+                        </tr>
+                        <tr style="background-color: #fff;">
+                            <td>Termination</td>
+                            <td id="termination-ssid">-</td>
+                            <td id="termination-dtc-dtm">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="drag-btn">
+            <div class="drag-ico"></div>
+        </div>
+        <div class="close_btn"></div>
+    </div>
+
+    <div id="popup-hint" class="popup">
+        <div class="drag-btn">
+            <div class="drag-ico"></div>
+        </div>
+        <div class="close_btn"></div>
+        <div class="titleText">Shortcuts</div>
+        <div class="hint-container">
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-ctrl"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint key-z"/></div>
+                </div>
+                <div class="hint-desc">Undo last action.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-ctrl"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint key-y"/></div>
+                </div>
+                <div class="hint-desc">Redo last action.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-ctrl"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint key-c"/></div>
+                </div>
+                <div class="hint-desc">Copy the selected object.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-ctrl"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint key-v"/></div>
+                </div>
+                <div class="hint-desc">Paste the copied object.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-ctrl"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint mouse-drag"/></div>
+                </div>
+                <div class="hint-desc">Move the image area.</div>
+            </div>
+
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-alt"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint key-r"/></div>
+                </div>
+                <div class="hint-desc">Draw measurement.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-alt"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint key-t"/></div>
+                </div>
+                <div class="hint-desc">Transform image view to JPG or WSI.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-alt"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint key-l"/></div>
+                </div>
+                <div class="hint-desc">Open or focus the image list popup.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-alt"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint key-o"/></div>
+                </div>
+                <div class="hint-desc">Open or close the object list popup.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-alt"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint key-m"/></div>
+                </div>
+                <div class="hint-desc">Open or close the memo popup.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-alt"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint key-i"/></div>
+                </div>
+                <div class="hint-desc">Open or close the info popup.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-alt"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint key-h"/></div>
+                </div>
+                <div class="hint-desc">Open or close the shortcuts popup.</div>
+            </div>
+
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-space"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint mouse-drag"/></div>
+                </div>
+                <div class="hint-desc">Draws an area to merge with or subtract from the selected object.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-r"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint mouse-drag"/></div>
+                </div>
+                <div class="hint-desc">Rotates the selected object.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command">
+                    <div><svg class="hint key-s"/></div>
+                    <svg class="hint plus"/>
+                    <div><svg class="hint mouse-click"/></div>
+                </div>
+                <div class="hint-desc">Select an object.</div>
+            </div>
+
+            <div class="hint-wrapper">
+                <div class="hint-command"><div><svg class="hint key-esc"/></div></div>
+                <div class="hint-desc">Close the info/label selection popup.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command"><div><svg class="hint key-plus"/></div></div>
+                <div class="hint-desc">Zoom in image area.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command"><div><svg class="hint key-minus"/></div></div>
+                <div class="hint-desc">Zoom out image area.</div>
+            </div>
+            <div class="hint-wrapper">
+                <div class="hint-command"><div><svg class="hint key-del"/></div></div>
+                <div class="hint-desc">Delete the selected object.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="filtersDiv" class="popup">
+        <div id="brightnessDiv">
+            Brightness
+            <div class="slider">
+                <div class="tooltip">0</div>
+            </div>
+        </div>
+        <div id="contrastDiv">
+            Contrast
+            <div class="slider">
+                <div class="tooltip">1</div>
+            </div>
+        </div>
+        <input type="checkbox" name="checker" class="chk" id="chkInvert">
+        <label for="chkInvert" style="margin-right: 4px;">Invert</label>
+        <input type="checkbox" name="checker" class="chk" id="chkGray">
+        <label for="chkGray" style="margin-right: 4px;">Gray Scale</label>
+        <button id="btnResetFilters">Reset</button>
+        
+        <div class="drag-btn">
+            <div class="drag-ico"></div>
+        </div>
+        <div class="close_btn"></div>
+    </div>
+</div>
+
+
+</body>
+</html>
+

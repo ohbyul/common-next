@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_레이어_1" data-name="레이어 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.02 18">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke: #666;
+        stroke-width: .5px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-3 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-4 {
+        fill: #ff0;
+      }
+    </style>
+  </defs>
+  <polygon class="cls-4" points="8.86 6.97 8.86 5.14 7.76 5.14 6.29 5.87 5.91 6.46 5.26 7.38 5.26 8.34 6.45 8.24 7.99 8.23 8.26 8.23 8.86 6.97"/>
+  <path class="cls-2" d="m8.38,5.08h1.07c1.74,0,3.14,1.41,3.14,3.14v3.52c0,2.03-1.65,3.68-3.68,3.68h0c-2.03,0-3.68-1.65-3.68-3.68v-3.52c0-1.74,1.41-3.14,3.14-3.14Z"/>
+  <line class="cls-2" x1="5.26" y1="8.23" x2="12.57" y2="8.23"/>
+  <rect class="cls-1" x="8.26" y="7.09" width="1.31" height="2.3" rx=".65" ry=".65"/>
+  <path class="cls-3" d="m7.63,3.44s-.08.32.24.53.99.48.99.77v2.12"/>
+  <line class="cls-3" x1="3.73" y1="3.92" x2="5.13" y2="4.92"/>
+  <line class="cls-3" x1="2.76" y1="6.3" x2="4.48" y2="6.18"/>
+  <line class="cls-3" x1="6.47" y1="2.58" x2="6.4" y2="4.3"/>
+</svg>
